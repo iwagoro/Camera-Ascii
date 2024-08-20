@@ -18,7 +18,7 @@ class AsciiEffect {
         this.#bright = bright;
         this.#contrast = contrast;
         this.#gamma = gamma;
-        this.#ctx.font = `bold ${font}px Pixelify Sans`;
+        this.#ctx.font = `bold ${font}px monospace`;
         this.#ctx.drawImage(image1, 0, 0, this.#width, this.#height);
         this.#pixels = this.#ctx.getImageData(0, 0, this.#width, this.#height);
     }

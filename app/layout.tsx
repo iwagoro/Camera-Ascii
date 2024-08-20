@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AsciiProvider from "./AsciiProvider";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Header from "./Header";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +21,18 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <AsciiProvider>
-                    <div className="w-screen max-w-screen h-screen max-h-screen overflow-hidden">{children}</div>
-                </AsciiProvider>
+            <body className={`${inter.className} p-2 w-screen max-w-screen h-screen max-h-screen`}>
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                    <AsciiProvider>
+                        <Card className="w-full h-full flex flex-col">
+                            <header className="flex-none">
+                                <Header />
+                                <Separator />
+                            </header>
+                            <main className="flex-1 w-full ">{children}</main>
+                        </Card>
+                    </AsciiProvider>
+                </ThemeProvider>
             </body>
         </html>
     );
