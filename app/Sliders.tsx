@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { AsciiContext } from "./AsciiProvider";
-import { useSearchParams } from "next/navigation";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 
@@ -20,8 +19,6 @@ const FONTSIZE_MAX = 100;
 
 export default function Sliders() {
     const { bright, setBright, gamma, setGamma, resolution, setResolution, fontSize, setFontSize } = useContext(AsciiContext);
-    const searchParams = useSearchParams();
-    const method = searchParams.get("method");
 
     return (
         <Sheet>

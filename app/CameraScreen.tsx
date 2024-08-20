@@ -14,7 +14,7 @@ export default function CameraScreen() {
     const smoothingFactor = 0.5; // 0から1の範囲で、0に近いほどスムーズ
 
     useEffect(() => {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioContext = new window.AudioContext();
         const analyserNode = audioContext.createAnalyser();
         analyserNode.fftSize = 256;
 
