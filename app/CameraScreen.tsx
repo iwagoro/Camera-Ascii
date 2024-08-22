@@ -5,7 +5,7 @@ import { AsciiContext } from "./AsciiProvider";
 import AsciiEffect from "./AsciiEffect/AsciiEffect";
 
 export default function CameraScreen() {
-    const { on, fontSize, bright, contrast, gamma, resolution } = useContext(AsciiContext);
+    const { on, fontSize, bright, contrast, gamma, resolution, soundActiveSensitivity, saturation, symbols, hue } = useContext(AsciiContext);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const camera = useRef(null);
@@ -55,8 +55,8 @@ export default function CameraScreen() {
                     setSmoothedVolume(smoothed);
 
                     // 音量に基づいて明るさを調整
-                    const dynamicBright = bright[0] + smoothed / 16;
-                    let effect = new AsciiEffect(ctx, canvas.width, canvas.height, video1, fontSize[0], dynamicBright, contrast[0], gamma[0]);
+                    const dynamicBright = bright[0] + (smoothed / 16) * soundActiveSensitivity[0];
+                    let effect = new AsciiEffect(ctx, canvas.width, canvas.height, video1, fontSize[0], dynamicBright, gamma[0], saturation[0], hue[0], symbols);
                     effect.draw(resolution[0]);
                 }
             }
